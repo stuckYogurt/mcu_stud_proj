@@ -12,7 +12,7 @@ include(pico_sdk_import.cmake)
 
 
 # Создаем проект. Аргументом указывается имя проекта - типовая строчка для любого CMakeLists.txt
-project(02-control)
+project(03-adc)
 
 
 
