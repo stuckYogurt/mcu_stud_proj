@@ -4,6 +4,7 @@
 #include "stdio.h"
 #include "pico/stdlib.h"
 
+#include "adc-task/adc-task.h"
 #include "tick-handler/tick-handler.h"
 #include "stdio-task/stdio-task.h"
 #include "protocol-task/protocol-task.h"
@@ -22,6 +23,8 @@ const api_t device_api[] =
 	{"version", version_callback, "get device name and firmware version"},
     {"led", led_task_handle, "bro blinkin' like bip bip"},
     {"help", help_callback, "help like for help"},
+    {"get_adc", get_adc, "adc voltage in V"},
+    {"get_temp", get_temp, "internal temp"},
 	{NULL, NULL, NULL},
 };
 
@@ -54,7 +57,7 @@ int main() {
     protocol_task_init(device_api);
 
     led_task_init(LED_PIN_DEF);
-
+    adc_task_init();
     tick_handler_init(POSSIBLE_ACTS);
 
     while (1) {

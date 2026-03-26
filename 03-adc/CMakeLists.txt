@@ -27,7 +27,7 @@ add_executable(${PROJECT_NAME}
 	${CMAKE_CURRENT_SOURCE_DIR}/stdio-task/stdio-task.c
 	${CMAKE_CURRENT_SOURCE_DIR}/protocol-task/protocol-task.c
 	${CMAKE_CURRENT_SOURCE_DIR}/led-task/led-task.c
-
+	${CMAKE_CURRENT_SOURCE_DIR}/adc-task/adc-task.c
 )
 
 
@@ -35,6 +35,7 @@ add_executable(${PROJECT_NAME}
 # Указываем на какие библиотеки ссылается наш код - типовая строчка для любого CMakeLists.txt
 target_link_libraries(${PROJECT_NAME}
 	pico_stdlib
+	hardware_adc
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC tick-handler)
