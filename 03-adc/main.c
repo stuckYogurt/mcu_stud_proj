@@ -9,6 +9,7 @@
 #include "stdio-task/stdio-task.h"
 #include "protocol-task/protocol-task.h"
 #include "led-task/led-task.h"
+#include "adc-task/adc-task.h"
 
 #define DEVICE_NAME "my-pico-device"
 #define DEVICE_VRSN "v0.0.1"
@@ -21,15 +22,21 @@ void help_callback(const char* input);
 const api_t device_api[] =
 {
 	{"version", version_callback, "get device name and firmware version"},
-    {"led", led_task_handle, "bro blinkin' like bip bip"},
     {"help", help_callback, "help like for help"},
+
+    {"led", led_task_handle, "bro blinkin' like bip bip"},
+
     {"get_adc", get_adc, "adc voltage in V"},
     {"get_temp", get_temp, "internal temp"},
+    {"tm_start", tm_start, "start measure"},
+    {"tm_stop", tm_stop, "stop measure"},
+
 	{NULL, NULL, NULL},
 };
 
 act_t POSSIBLE_ACTS[] = {
     {"led-task", false, led_task_blink},
+    {"tm", false, adc_task_handle},
     {NULL, NULL, NULL},
 };
 
